@@ -1,5 +1,4 @@
 import React from 'react';
-// import classNames from 'classnames';
 
 const Container = (props) => {
     return (
@@ -19,21 +18,27 @@ const Row = (props) => {
 
 const Column = (props) => {
     const aliases = {
-        mobile: 'xs',
-        tablet: 'sm',
-        laptop: 'md',
-        desktop: 'lg',
+        Mobile: 'xs',
+        Tablet: 'sm',
+        Laptop: 'md',
+        Desktop: 'lg',
     };
 
-    // let classes = [];
+    let classes = [];
 
-    Object.entries(props).map(prop => {
+    Object.entries(props).forEach(prop => {
         const propName = prop[0];
         const propValue = prop[1];
+        const inMatches = propName.match(/in(Mobile|Tablet|Laptop|Desktop)/);
+        const offsetMatches = propName.match(/offsetIn(Mobile|Tablet|Laptop|Desktop)/);
 
-        console.log(propName, propValue);
+        if (inMatches) {
+            classes.push(`col-${aliases[inMatches[1]]}-${props[inMatches[0]]}`);
+        }
 
-        return '';
+        if (offsetMatches) {
+            classes.push(`offset-${aliases[offsetMatches[1]]}-${props[offsetMatches[0]]}`);
+        }
     });
 
     return (
