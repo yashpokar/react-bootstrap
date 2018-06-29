@@ -18,7 +18,6 @@ const Row = (props) => {
 
 const Column = (props) => {
     const aliases = {
-        Mobile: 'xs',
         Tablet: 'sm',
         Laptop: 'md',
         Desktop: 'lg',
@@ -26,24 +25,27 @@ const Column = (props) => {
 
     let classes = [];
 
+    const inRegex = new RegExp(`in(${Object.keys(aliases).join('|')})`);
+    const offsetRegex = new RegExp(`offsetIn(${Object.keys(aliases).join('|')})`);
+
     Object.entries(props).forEach(prop => {
         const propName = prop[0];
         const propValue = prop[1];
-        const inMatches = propName.match(/in(Mobile|Tablet|Laptop|Desktop)/);
-        const offsetMatches = propName.match(/offsetIn(Mobile|Tablet|Laptop|Desktop)/);
+        const inMatches = propName.match(inRegex);
+        const offsetMatches = propName.match(offsetRegex);
 
         if (inMatches) {
-            classes.push(`col-${aliases[inMatches[1]]}-${props[inMatches[0]]}`);
+            classes.push(`col-${aliases[inMatches[1]]}-${propValue}`);
         }
 
         if (offsetMatches) {
-            classes.push(`offset-${aliases[offsetMatches[1]]}-${props[offsetMatches[0]]}`);
+            classes.push(`offset-${aliases[offsetMatches[1]]}-${propValue}`);
         }
     });
 
     return (
-        <div className="col">
-            {props.children}
+        <div className={ classes ? classes.join(' ') : 'col' }>
+            { props.children }
         </div>
     )
 }
