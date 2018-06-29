@@ -1,4 +1,5 @@
 import React from 'react';
+import config from './../config';
 
 const Container = (props) => {
     return (
@@ -17,30 +18,19 @@ const Row = (props) => {
 }
 
 const Column = (props) => {
-    const aliases = {
-        Tablet: 'sm',
-        Laptop: 'md',
-        Desktop: 'lg',
-    };
+    const aliases = config.layouts.devices;
 
-    let classes = [];
-
-    const inRegex = new RegExp(`in(${Object.keys(aliases).join('|')})`);
-    const offsetRegex = new RegExp(`offsetIn(${Object.keys(aliases).join('|')})`);
+    const classes = [];
 
     Object.entries(props).forEach(prop => {
-        const propName = prop[0];
-        const propValue = prop[1];
-        const inMatches = propName.match(inRegex);
-        const offsetMatches = propName.match(offsetRegex);
+        Object.entries(config.layouts.patterns).forEach(pattern => {
+            const regex = new RegExp(pattern[1].replace('{{DEVICES}}', `${Object.keys(aliases).join('|')}`));
+            const match = prop[0].match(regex);
 
-        if (inMatches) {
-            classes.push(`col-${aliases[inMatches[1]]}-${propValue}`);
-        }
-
-        if (offsetMatches) {
-            classes.push(`offset-${aliases[offsetMatches[1]]}-${propValue}`);
-        }
+            if (match) {
+                classes.push(pattern[0].replace('{{DEVICE_ALIAS}}', aliases[match[1]]).replace('{{COLS}}', prop[1]));
+            }
+        });
     });
 
     return (
