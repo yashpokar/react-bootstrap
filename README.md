@@ -35,9 +35,10 @@ looks like
     Fantastic alert ever.
 </Alert>
 ```
+also applicable,
 
-* hasSuccess
-* hasDanger
-* hasWarning
-* hasInfo
-* hasPrimary
+    * hasSuccess
+    * hasDanger
+    * hasWarning
+    * hasInfo
+    * hasPrimary
