@@ -10,4 +10,10 @@ export default {
             "offset-{{DEVICE_ALIAS}}-{{COLS}}": `offsetIn({{DEVICES}})`,
         },
     },
+
+    alert: {
+        patterns: {
+            "alert-{{TYPE}}": "has(Success|Danger|Warning|Info|Primary)",
+        }
+    }
 };
