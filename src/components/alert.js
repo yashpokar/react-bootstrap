@@ -12,7 +12,7 @@ export default class Alert extends React.Component
                 const match = prop[0].match(regex);
 
                 if (match) {
-                    classes.push(pattern[0].replace('{{TYPE}}', match[1].toLowerCase()));
+                    classes.push(pattern[0].replace('{{TYPE_HAS}}', match[1].toLowerCase()).replace('{{TYPE_IS}}', match[1].toLowerCase()));
                 }
             });
         });
@@ -22,5 +22,14 @@ export default class Alert extends React.Component
                 { this.props.children }
             </div>
         );
+    }
+}
+
+export class AlertLink extends React.Component
+{
+    render () {
+        return (
+            <a href={ this.props.url } className="alert-link">{ this.props.children }</a>
+        )
     }
 }

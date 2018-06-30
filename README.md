@@ -41,4 +41,8 @@ also applicable,
     * hasDanger
     * hasWarning
     * hasInfo
-    * hasPrimary
+
+    * isPrimary
+    * isSecondary
+    * isDark
+    * isLight

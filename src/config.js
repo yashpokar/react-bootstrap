@@ -13,7 +13,8 @@ export default {
 
     alert: {
         patterns: {
-            "alert-{{TYPE}}": "has(Success|Danger|Warning|Info|Primary)",
+            "alert-{{TYPE_HAS}}": "has(Success|Danger|Warning|Info)",
+            "alert-{{TYPE_IS}}": "is(Primary|Secondary|Dark|Light)",
         }
     }
 };
