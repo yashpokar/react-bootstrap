@@ -3,7 +3,7 @@ import config from './../config';
 
 const Container = (props) => {
     return (
-        <div className={`container${(props.fluid ? '-fluid' : '')}`}>
+        <div className={`container${(props.isFluid ? '-fluid' : '')}`}>
             {props.children}
         </div>
     )

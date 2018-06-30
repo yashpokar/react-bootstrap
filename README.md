@@ -17,7 +17,7 @@ Which renders
 ```
 
 ```
-<Container fluid>
+<Container isFluid>
     The fluid container
 </Container>
 ```
